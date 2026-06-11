@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
-</AnchorPane>
+<VBox alignment="CENTER" spacing="16"
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.HistoricoController"
+      style="-fx-background-color: #1a1a2e;">
+    <padding><Insets top="40" bottom="40" left="60" right="60"/></padding>
+    <Label text="📜 Histórico de Runs"
+           style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
+    <Label fx:id="lblEstatisticas" style="-fx-font-size: 15px; -fx-text-fill: #cccccc;"/>
+    <TextArea fx:id="areaHistorico" editable="false" wrapText="true"
+              prefHeight="300" prefWidth="500"
+              style="-fx-control-inner-background: #12122a; -fx-text-fill: #ccc;"/>
+    <Button text="← Voltar" onAction="#aoVoltar" prefWidth="160" prefHeight="40"
+            style="-fx-background-color: #2a2a4a; -fx-text-fill: #ccc;
+                   -fx-font-size: 14px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+</VBox>

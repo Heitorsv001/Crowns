@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
-</AnchorPane>
+<VBox alignment="CENTER" spacing="16"
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.CreditosController"
+      style="-fx-background-color: #1a1a2e;">
+    <padding><Insets top="60" bottom="60" left="80" right="80"/></padding>
+    <Label text="⚔ CROWNS" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
+    <Label text="Jogo de Cartas Estratégico" style="-fx-font-size: 16px; -fx-text-fill: #aaa;"/>
+    <Label text="━━━━━━━━━━━━━━━━━━━━" style="-fx-text-fill: #555;"/>
+    <Label text="
