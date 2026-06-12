@@ -17,7 +17,7 @@ public class LojaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Jogador j = EstadoJogo.get().getJogador();
-        if (j != null) lblMoedas.setText("💰 Suas moedas: " + j.getMoedas());
+        if (j != null) lblMoedas.setText(" Suas moedas: " + j.getMoedas());
     }
 
     @FXML private void aoVoltar() { GerenciadorCena.irParaRecompensa(); }

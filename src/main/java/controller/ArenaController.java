@@ -14,7 +14,6 @@ import java.util.ResourceBundle;
 
 public class ArenaController implements Initializable {
 
-    // --- FXML ---
     @FXML private Label lblArena, lblInimigo, lblHpJogador, lblHpInimigo;
     @FXML private Label lblElixir, lblTurno;
     @FXML private ProgressBar barraHpJogador, barraHpInimigo, barraElixir;
@@ -22,7 +21,6 @@ public class ArenaController implements Initializable {
     @FXML private TextArea logBatalha;
     @FXML private Button btnPassarTurno;
 
-    // --- Estado ---
     private Jogador jogador;
     private Arena arenaAtual;
     private Inimigo inimigo;
@@ -46,7 +44,7 @@ public class ArenaController implements Initializable {
         lblArena.setText("Arena " + arenaAtual.getNumero() + " — " + arenaAtual.getNome());
         lblInimigo.setText("Inimigo: " + inimigo.getNome());
 
-        log("⚔ Batalha iniciada! Você enfrenta " + inimigo.getNome() + ".");
+        log("Batalha iniciada... Você enfrenta " + inimigo.getNome() + ".");
         log(arenaAtual.getDescricao());
 
         atualizarUI();
@@ -54,17 +52,13 @@ public class ArenaController implements Initializable {
         renderizarCartasInimigo();
     }
 
-    // =========================================================
-    // Ações do jogador
-    // =========================================================
 
-    /** Jogador usa a carta clicada (RF2). */
     private void usarCarta(Carta carta) {
         if (!carta.podeSerUsada(jogador.getElixirAtual())) {
             if (carta.isEmRecarga()) {
-                log("⏳ " + carta.getNome() + " ainda está recarregando.");
+                log(" " + carta.getNome() + " ainda está recarregando.");
             } else {
-                log("⚡ Elixir insuficiente! Precisa de " + carta.getCusto()
+                log("⚡ Elixir insuficiente. Precisa de " + carta.getCusto()
                         + ", você tem " + jogador.getElixirAtual() + ".");
             }
             return;
@@ -75,24 +69,22 @@ public class ArenaController implements Initializable {
 
         int dano = CalcularDano.calcularDanoAtaque(carta);
 
-        // Curandeira tem lógica especial (RN4)
         if (carta.getTipo() == TipoCarta.SUPORTE) {
             int cura = CalcularDano.calcularCura(carta);
             if (cura > 0) {
                 carta.curar(cura);
-                log("💚 " + carta.getNome() + " curou " + cura + " HP próprio!");
+                log("💚 " + carta.getNome() + " curou " + cura + " de HP");
             }
         }
 
-        // Aplica dano nas cartas vivas do inimigo
         List<Carta> alvoInimigo = inimigo.getDeck().getCartasVivas();
         if (!alvoInimigo.isEmpty()) {
-            Carta alvo = alvoInimigo.get(0); // ataca a primeira carta viva
+            Carta alvo = alvoInimigo.get(0); 
             alvo.receberDano(dano);
-            log("🗡 " + carta.getNome() + " causou " + dano + " de dano em "
-                    + alvo.getNome() + "! (HP: " + alvo.getVidaAtual() + ")");
+            log( carta.getNome() + " causou " + dano + " de dano em "
+                    + alvo.getNome() + "  (HP: " + alvo.getVidaAtual() + ")");
             if (alvo.estaMorta()) {
-                log("💀 " + alvo.getNome() + " foi derrotado!");
+                log("💀 " + alvo.getNome() + " foi derrotado");
             }
         }
 
@@ -103,14 +95,12 @@ public class ArenaController implements Initializable {
         verificarFimDeBatalha();
     }
 
-    /** Passa o turno: inimigo ataca, elixir regenera (RF6). */
     @FXML
     private void aoPassarTurno() {
         if (verificarFimDeBatalha()) return;
 
         log("\n--- Turno " + numeroTurno + " do Inimigo ---");
 
-        // Inimigo usa cartas do turno atual
         List<Carta> cartasDoTurno = inimigo.getCartasDoTurnoAtual();
         if (cartasDoTurno.isEmpty()) {
             log("O inimigo não tem cartas para usar neste turno.");
@@ -119,16 +109,14 @@ public class ArenaController implements Initializable {
                 int dano = CalcularDano.calcularDanoAtaque(cartaInimigo);
                 jogador.receberDano(dano);
                 log("💥 " + inimigo.getNome() + " usou " + cartaInimigo.getNome()
-                        + " causando " + dano + " de dano! Seu HP: " + jogador.getHpAtual());
+                        + " causando " + dano + " de dano. Seu HP: " + jogador.getHpAtual());
                 if (verificarFimDeBatalha()) return;
             }
         }
 
-        // Regenera elixir (RF6)
         jogador.regenerarElixir();
-        log("⚡ Elixir regenerado: " + jogador.getElixirAtual() + "/" + Jogador.MAX_ELIXIR);
+        log(" Elixir regenerado: " + jogador.getElixirAtual() + "/" + Jogador.MAX_ELIXIR);
 
-        // Atualiza recarga das cartas do jogador
         jogador.getDeck().atualizarRecargas();
 
         numeroTurno++;
@@ -148,16 +136,12 @@ public class ArenaController implements Initializable {
         GerenciadorCena.irParaMenu();
     }
 
-    // =========================================================
-    // Verificação de fim de batalha
-    // =========================================================
-
     private boolean verificarFimDeBatalha() {
         if (inimigo.foiDerrotado()) {
-            log("\n🏆 VITÓRIA! Você derrotou " + inimigo.getNome() + "!");
+            log("\n VITÓRIA! Você derrotou " + inimigo.getNome() + "!");
             btnPassarTurno.setDisable(true);
 
-            boolean darCarta = RandomUtils.chance(0.6); // 60% de chance de carta bônus
+            boolean darCarta = RandomUtils.chance(0.6); 
             Carta cartaBonus = darCarta ? RandomUtils.sortearCartaBonus(arenaAtual.getNumero()) : null;
             int moedas       = CalcularDano.calcularRecompensa(
                                    arenaAtual.getRecompensaMoedas(), arenaAtual.getNumero());
@@ -168,18 +152,16 @@ public class ArenaController implements Initializable {
             jogador.registrarVitoria();
             EstadoJogo.get().setUltimaRecompensa(r);
 
-            // Desbloquear próxima arena
             List<Arena> arenas = EstadoJogo.get().getArenas();
-            int proxIdx = arenaAtual.getNumero(); // getNumero() é 1-based, índice é 0-based
+            int proxIdx = arenaAtual.getNumero();
             if (proxIdx < arenas.size()) {
                 arenas.get(proxIdx).desbloquear();
             }
 
-            log("💰 Recompensa: " + moedas + " moedas"
+            log(" Recompensa: " + moedas + " moedas"
                     + (cartaBonus != null ? " + carta: " + cartaBonus.getNome() : "") + "!");
             log("Redirecionando para recompensas em 3 segundos...");
 
-            // Vai para tela de recompensa após 2.5s
             javafx.animation.PauseTransition pausa =
                 new javafx.animation.PauseTransition(javafx.util.Duration.seconds(2.5));
             pausa.setOnFinished(e -> GerenciadorCena.irParaRecompensa());
@@ -189,7 +171,7 @@ public class ArenaController implements Initializable {
 
         if (jogador.estaDerrotado()) {
             log("\n💀 DERROTA! Você foi derrotado por " + inimigo.getNome() + ".");
-            log("Sua run foi encerrada. Upgrades permanentes foram mantidos.");
+            log("Sua run foi encerrada.");
             btnPassarTurno.setDisable(true);
 
             jogador.registrarDerrota();
@@ -204,22 +186,16 @@ public class ArenaController implements Initializable {
         return false;
     }
 
-    // =========================================================
-    // Renderização
-    // =========================================================
 
     private void atualizarUI() {
-        // HP jogador
         double percHpJogador = (double) jogador.getHpAtual() / jogador.getHpMaximo();
         barraHpJogador.setProgress(percHpJogador);
         lblHpJogador.setText(jogador.getHpAtual() + "/" + jogador.getHpMaximo());
 
-        // Elixir
         double percElixir = (double) jogador.getElixirAtual() / Jogador.MAX_ELIXIR;
         barraElixir.setProgress(percElixir);
         lblElixir.setText(jogador.getElixirAtual() + "/" + Jogador.MAX_ELIXIR);
 
-        // HP inimigo (soma das vidas das cartas vivas)
         List<Carta> vivasInimigo = inimigo.getDeck().getCartasVivas();
         int hpTotalInimigo = vivasInimigo.stream().mapToInt(Carta::getVidaAtual).sum();
         int hpMaxInimigo   = inimigo.getDeck().getCartas().stream()
@@ -229,7 +205,6 @@ public class ArenaController implements Initializable {
         lblHpInimigo.setText(hpTotalInimigo + "/" + hpMaxInimigo);
     }
 
-    /** Renderiza botões das cartas do jogador. */
     private void renderizarCartasJogador() {
         cartasJogador.getChildren().clear();
         for (Carta carta : jogador.getDeck().getCartas()) {
@@ -238,7 +213,6 @@ public class ArenaController implements Initializable {
         }
     }
 
-    /** Renderiza cartas do inimigo (só exibição, sem clique). */
     private void renderizarCartasInimigo() {
         cartasInimigo.getChildren().clear();
         for (Carta carta : inimigo.getDeck().getCartas()) {
@@ -247,14 +221,13 @@ public class ArenaController implements Initializable {
         }
     }
 
-    /** Cria um botão visual representando uma carta. */
     private Button criarBotaoCarta(Carta carta, boolean clicavel) {
         String hp    = carta.estaMorta() ? "MORTA" : carta.getVidaAtual() + "HP";
         String label = carta.getNome() + "\n"
-                     + "❤ " + hp + "\n"
-                     + "⚔ " + carta.getDano() + "\n"
-                     + "⚡ " + carta.getCusto()
-                     + (carta.isEmRecarga() ? "\n⏳ Recarga" : "");
+                     + "vida:" + hp + "\n"
+                     + "dano: " + carta.getDano() + "\n"
+                     + "custo" + carta.getCusto()
+                     + (carta.isEmRecarga() ? "\n Recarga" : "");
 
         Button btn = new Button(label);
         btn.setPrefWidth(120);

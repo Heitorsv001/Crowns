@@ -16,7 +16,7 @@ public class PrimaryController {
     private void aoClicarJogar() {
         String nome = campoNome.getText().trim();
         if (nome.isEmpty()) {
-            lblErro.setText("Digite seu nome para começar!");
+            lblErro.setText("Digite seu nome para começar");
             return;
         }
         EstadoJogo.get().iniciarSessao(nome);

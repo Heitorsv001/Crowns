@@ -20,7 +20,7 @@ public class HistoricoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Jogador j = EstadoJogo.get().getJogador();
         if (j == null) {
-            lblEstatisticas.setText("Nenhuma sessão iniciada.");
+            lblEstatisticas.setText("Nenhuma sessao iniciada.");
             return;
         }
         lblEstatisticas.setText("Jogador: " + j.getNome()
@@ -30,8 +30,7 @@ public class HistoricoController implements Initializable {
         areaHistorico.setText(
             "Vitórias totais: " + j.getTotalVitorias() + "\n"
             + "Derrotas totais: " + j.getTotalDerrotas() + "\n"
-            + "Arena atual: " + (j.getArenaAtual() + 1) + "\n\n"
-            + "(Histórico detalhado disponível após integração com banco de dados)");
+            + "Arena atual: " + (j.getArenaAtual() + 1) + "\n");
     }
 
     @FXML private void aoVoltar() { GerenciadorCena.irParaMenu(); }

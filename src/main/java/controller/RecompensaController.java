@@ -22,10 +22,10 @@ public class RecompensaController implements Initializable {
         if (r == null) { GerenciadorCena.irParaMenu(); return; }
 
         lblMensagem.setText(r.getMensagem());
-        lblMoedas.setText("💰 " + r.getMoedas() + " moedas recebidas!");
+        lblMoedas.setText("" + r.getMoedas() + " moedas recebidas");
         lblCartaBonus.setText(r.isTemCartaBonus()
             ? "🎴 Carta bônus: " + r.getCartaBonus().getNome()
-            : "Sem carta bônus desta vez.");
+            : "");
 
         if (EstadoJogo.get().jogoCompleto()) {
             btnContinuar.setText("🏁 Fim de Jogo");
