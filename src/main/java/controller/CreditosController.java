@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
-/**
- *
- * @author aluno
- */
+import javafx.fxml.FXML;
+import utils.GerenciadorCena;
+
 public class CreditosController {
-    
+    @FXML private void aoVoltar() { GerenciadorCena.irParaMenu(); }
 }

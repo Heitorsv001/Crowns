@@ -1,13 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
-/**
- *
- * @author aluno
- */
-public class HistoricoController {
-    
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import model.Jogador;
+import utils.EstadoJogo;
+import utils.GerenciadorCena;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HistoricoController implements Initializable {
+
+    @FXML private Label lblEstatisticas;
+    @FXML private TextArea areaHistorico;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Jogador j = EstadoJogo.get().getJogador();
+        if (j == null) {
+            lblEstatisticas.setText("Nenhuma sessao iniciada.");
+            return;
+        }
+        lblEstatisticas.setText("Jogador: " + j.getNome()
+            + "   |   Vitórias: " + j.getTotalVitorias()
+            + "   |   Derrotas: " + j.getTotalDerrotas()
+            + "   |   Moedas: " + j.getMoedas());
+        areaHistorico.setText(
+            "Vitórias totais: " + j.getTotalVitorias() + "\n"
+            + "Derrotas totais: " + j.getTotalDerrotas() + "\n"
+            + "Arena atual: " + (j.getArenaAtual() + 1) + "\n");
+    }
+
+    @FXML private void aoVoltar() { GerenciadorCena.irParaMenu(); }
 }
