@@ -7,7 +7,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.*;
 import utils.*;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.control.ContentDisplay;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -221,42 +224,60 @@ public class ArenaController implements Initializable {
         }
     }
 
-    private Button criarBotaoCarta(Carta carta, boolean clicavel) {
-        String hp    = carta.estaMorta() ? "MORTA" : carta.getVidaAtual() + "HP";
-        String label = carta.getNome() + "\n"
-                     + "vida:" + hp + "\n"
-                     + "dano: " + carta.getDano() + "\n"
-                     + "custo" + carta.getCusto()
-                     + (carta.isEmRecarga() ? "\n Recarga" : "");
+   private Button criarBotaoCarta(Carta carta, boolean clicavel) {
+    Button btn = new Button();
+    btn.setPrefWidth(120);
+    btn.setPrefHeight(140);
+    btn.setWrapText(true);
+    btn.setContentDisplay(ContentDisplay.TOP);
 
-        Button btn = new Button(label);
-        btn.setPrefWidth(120);
-        btn.setPrefHeight(100);
-        btn.setWrapText(true);
+    try {
+        java.io.InputStream stream = getClass().getResourceAsStream(
+            "/com/mycompany/crowns/images/" + carta.getImagemPath());
+        if (stream != null) {
+            ImageView iv = new ImageView(new Image(stream));
+            iv.setFitWidth(80);
+            iv.setFitHeight(80);
+            iv.setPreserveRatio(true);
+            iv.setSmooth(true);
 
-        String cor;
-        if (carta.estaMorta()) {
-            cor = "#333333";
-        } else if (carta.isEmRecarga()) {
-            cor = "#3a3a5a";
-        } else if (clicavel) {
-            cor = "#1a3a1a";
-        } else {
-            cor = "#3a1a1a";
+            if (carta.estaMorta() || carta.isEmRecarga()) {
+                ColorAdjust escurecer = new ColorAdjust();
+                escurecer.setBrightness(-0.6);
+                iv.setEffect(escurecer);
+            }
+            btn.setGraphic(iv);
         }
-
-        btn.setStyle("-fx-background-color: " + cor + "; -fx-text-fill: white; "
-                   + "-fx-font-size: 11px; -fx-background-radius: 8; "
-                   + "-fx-border-color: #555; -fx-cursor: "
-                   + (clicavel ? "hand" : "default") + ";");
-
-        if (clicavel && !carta.estaMorta()) {
-            btn.setOnAction(e -> usarCarta(carta));
-        }
-        btn.setDisable(carta.estaMorta());
-
-        return btn;
+    } catch (Exception e) {
+        System.err.println("Imagem não encontrada: " + carta.getImagemPath());
     }
+
+    String status = carta.estaMorta()    ? "💀 MORTA"
+                  : carta.isEmRecarga()  ? " Recarga"
+                  : "❤ " + carta.getVidaAtual() + "  ⚔ " + carta.getDano() + "  ⚡ " + carta.getCusto();
+    btn.setText(carta.getNome() + "\n" + status);
+
+    String cor = carta.estaMorta()    ? "#333333"
+               : carta.isEmRecarga()  ? "#3a3a5a"
+               : clicavel             ? "#1a3a1a"
+               :                        "#3a1a1a";
+
+    btn.setStyle(
+        "-fx-background-color: " + cor + ";" +
+        "-fx-text-fill: white;" +
+        "-fx-font-size: 10px;" +
+        "-fx-background-radius: 8;" +
+        "-fx-border-color: #555;" +
+        "-fx-cursor: " + (clicavel ? "hand" : "default") + ";"
+    );
+
+    if (clicavel && !carta.estaMorta()) {
+        btn.setOnAction(e -> usarCarta(carta));
+    }
+    btn.setDisable(carta.estaMorta());
+
+    return btn;
+}
 
     private void log(String msg) {
         logBatalha.appendText(msg + "\n");

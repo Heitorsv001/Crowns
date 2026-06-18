@@ -2,7 +2,7 @@ package model;
 public class FabricaCartas {
 
     public static Carta criarEsqueleto() {
-        Carta c = new Carta("Esqueleto", TipoCarta.HORDA, 90, 70, "esqueleto.png");
+        Carta c = new Carta("Esqueleto", TipoCarta.HORDA, 90, 70, "esqueletos.png");
         return c;
     }
 
@@ -17,7 +17,7 @@ public class FabricaCartas {
     }
 
     public static Carta criarCavaleiro() {
-        Carta c = new Carta("Cavaleiro", TipoCarta.TANQUE, 420, 140, "cavaleiro.png");
+        Carta c = new Carta("Cavaleiro", TipoCarta.TANQUE, 420, 140, "Cavaleiro.png");
         return c;
     }
 

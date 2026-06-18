@@ -1,0 +1,80 @@
+# ========================
+# Compilação e Build
+# ========================
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+
+# ========================
+# Maven
+# ========================
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ========================
+# IDEs
+# ========================
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# VS Code
+.vscode/
+
+# ========================
+# JavaFX / FXML
+# ========================
+# Arquivos gerados pelo Scene Builder
+*.fxml.bak
+
+# ========================
+# Sistema Operacional
+# ========================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# ========================
+# Logs e temporários
+# ========================
+*.log
+*.tmp
+*.temp
+hs_err_pid*
+replay_pid*
