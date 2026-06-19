@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" spacing="16"
-      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controller.CreditosController"
-      style="-fx-background-color: #1a1a2e;">
-    <padding><Insets top="60" bottom="60" left="80" right="80"/></padding>
-    <Label text="⚔ CROWNS" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
-    <Label text="Jogo de Cartas Estratégico" style="-fx-font-size: 16px; -fx-text-fill: #aaa;"/>
-    <Label text="━━━━━━━━━━━━━━━━━━━━" style="-fx-text-fill: #555;"/>
-    <Label text="
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="16" style="-fx-background-color: #1a1a2e;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreditosController">
+    <padding><Insets bottom="60" left="80" right="80" top="60" /></padding>
+    <Label style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;" text=" CROWNS" />
+    <Label style="-fx-font-size: 16px; -fx-text-fill: #aaa;" text="Heitor Silva Vareiro &amp; Guilherme Scarpellini" />
+    <Label prefHeight="22.0" prefWidth="324.0" style="-fx-font-size: 16px; -fx-text-fill: #aaa;" text="Topicos em linghuagem de programacao 2" />
+    <Label style="-fx-font-size: 16px; -fx-text-fill: #aaa;" text="Tecnologias utilizadas: Java FXML." />
+    </VBox>
