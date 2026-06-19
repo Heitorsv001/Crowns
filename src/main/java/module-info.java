@@ -5,6 +5,9 @@ module com.mycompany.crowns {
     opens com.mycompany.crowns to javafx.fxml;
     opens controller to javafx.fxml;
     opens model to javafx.fxml;
+    
+    requires java.sql;
+    requires org.postgresql.jdbc;
 
     exports com.mycompany.crowns;
     exports model;
