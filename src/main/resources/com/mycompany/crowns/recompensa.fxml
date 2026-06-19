@@ -10,7 +10,7 @@
 
     <padding><Insets bottom="60" left="80" right="80" top="60" /></padding>
 
-    <Label style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;" text=" VITÓRIA!" />
+    <Label style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;" text=" VITORIA!!!" />
 
     <Label fx:id="lblMensagem" maxWidth="500" style="-fx-font-size: 16px; -fx-text-fill: #cccccc;" textAlignment="CENTER" wrapText="true" />
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="16"
+      xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.LojaController"
+      style="-fx-background-color: #1a1a2e;">
+    <padding><Insets top="40" bottom="40" left="60" right="60"/></padding>
+    <Label text="🏪 Loja"
+           style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
+    <Label fx:id="lblMoedas" style="-fx-font-size: 16px; -fx-text-fill: #cccccc;"/>
+    <Label text="(Loja completa em breve — upgrades e compra de cartas)"
+           style="-fx-font-size: 13px; -fx-text-fill: #666;"/>
+    <Button text="← Voltar" onAction="#aoVoltar" prefWidth="160" prefHeight="40"
+            style="-fx-background-color: #2a2a4a; -fx-text-fill: #ccc;
+                   -fx-font-size: 14px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+</VBox>
