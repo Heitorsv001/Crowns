@@ -12,7 +12,7 @@ public class FabricaCartas {
     }
 
     public static Carta criarGoblinLanceiro() {
-        Carta c = new Carta("Goblin Lanceiro", TipoCarta.HORDA, 120, 100, "goblin.png");
+        Carta c = new Carta("Goblin Lanceiro", TipoCarta.HORDA, 120, 100, "goblin_lanceiro.png");
         return c;
     }
 
@@ -27,7 +27,7 @@ public class FabricaCartas {
     }
 
     public static Carta criarMorcego() {
-        Carta c = new Carta("Morcego", TipoCarta.HORDA, 70, 55, "morcego.png");
+        Carta c = new Carta("Morcego", TipoCarta.HORDA, 70, 55, "morcegos.png");
         return c;
     }
 
@@ -55,7 +55,7 @@ public class FabricaCartas {
     }
 
     public static Carta criarPEKA() {
-        Carta c = new Carta("PEKA", TipoCarta.DESTRUIDOR, 650, 320, "peka.png");
+        Carta c = new Carta("PEKA", TipoCarta.DESTRUIDOR, 650, 320, "pekka.png");
         return c;
     }
 
@@ -65,12 +65,12 @@ public class FabricaCartas {
     }
 
     public static Carta criarLavaHound() {
-        Carta c = new Carta("Lava Hound", TipoCarta.TANQUE, 700, 40, "lavahound.png");
+        Carta c = new Carta("Lava Hound", TipoCarta.TANQUE, 700, 40, "lava-hound.png");
         return c;
     }
 
     public static Carta criarMegaCavaleiro() {
-        Carta c = new Carta("Mega Cavaleiro", TipoCarta.ESPECIAL, 800, 280, "megacavaleiro.png");
+        Carta c = new Carta("Mega Cavaleiro", TipoCarta.ESPECIAL, 800, 280, "mega-cavaleiro.png");
         c.setChanceCritico(0.30);
         return c;
     }
