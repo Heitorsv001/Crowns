@@ -15,7 +15,7 @@ import model.Jogador;
 import utils.Alerta;
 import utils.EstadoJogo;
 import utils.GerenciadorCena;
-
+import com.mycompany.crowns.dao.JogadorDAO;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,23 +86,25 @@ public class LojaController implements Initializable {
         return tile;
     }
 
-    private void aoMelhorarCarta(Carta carta) {
-        int custo = carta.getCustoUpgrade();
-        boolean sucesso = jogador.fazerUpgrade(carta);
+   private void aoMelhorarCarta(Carta carta) {
+    int custo = carta.getCustoUpgrade();
+    boolean sucesso = jogador.fazerUpgrade(carta);
 
-        if (sucesso) {
-            Alerta.mostrarInfo("Upgrade realizado!",
-                carta.getNome() + " subiu para o nível " + carta.getNivel() + "!");
-        } else {
-            Alerta.mostrarErro("Moedas insuficientes",
-                "Você precisa de " + custo + " moedas para melhorar " + carta.getNome()
-                + ".\nVocê possui: " + jogador.getMoedas() + " moedas.");
-        }
+    if (sucesso) {
+        JogadorDAO.atualizarNivelCarta(jogador.getNome(), carta);
+        JogadorDAO.salvarOuAtualizar(jogador);
 
-        atualizarMoedas();
-        renderizarCartasParaUpgrade();
+        Alerta.mostrarInfo("Upgrade realizado!",
+            carta.getNome() + " subiu para o nivel " + carta.getNivel() + "!");
+    } else {
+        Alerta.mostrarErro("Moedas insuficientes",
+            "Voce precisa de " + custo + " moedas para melhorar " + carta.getNome()
+            + ".\nVoce possui: " + jogador.getMoedas() + " moedas.");
     }
 
+    atualizarMoedas();
+    renderizarCartasParaUpgrade();
+}
     // ===================== COMPRAR NOVAS CARTAS =====================
 
     private void renderizarCartasParaComprar() {
@@ -148,23 +150,25 @@ public class LojaController implements Initializable {
     }
 
     private void aoComprarCarta(Carta carta) {
-        int preco = carta.getPrecoCompra();
-        boolean sucesso = jogador.comprarCarta(carta);
+    int preco = carta.getPrecoCompra();
+    boolean sucesso = jogador.comprarCarta(carta);
 
-        if (sucesso) {
-            Alerta.mostrarInfo("Compra realizada!",
-                "Você comprou " + carta.getNome() + "!\nVá até o Deck para colocá-la em batalha.");
-        } else {
-            Alerta.mostrarErro("Moedas insuficientes",
-                "Você precisa de " + preco + " moedas para comprar " + carta.getNome()
-                + ".\nVocê possui: " + jogador.getMoedas() + " moedas.");
-        }
+    if (sucesso) {
+        JogadorDAO.salvarOuAtualizar(jogador);
+        JogadorDAO.salvarCartaNaColecao(jogador.getNome(), carta);
 
-        atualizarMoedas();
-        renderizarCartasParaUpgrade();
-        renderizarCartasParaComprar();
+        Alerta.mostrarInfo("Compra realizada!",
+            "Voce comprou " + carta.getNome() + "!\nVa ate o Deck para coloca-la em batalha.");
+    } else {
+        Alerta.mostrarErro("Moedas insuficientes",
+            "Voce precisa de " + preco + " moedas para comprar " + carta.getNome()
+            + ".\nVoce possui: " + jogador.getMoedas() + " moedas.");
     }
 
+    atualizarMoedas();
+    renderizarCartasParaUpgrade();
+    renderizarCartasParaComprar();
+}
     /** Catálogo de cartas que ainda não estão na coleção do jogador. */
     private List<Carta> catalogoDeCompra() {
         List<Carta> catalogoCompleto = new ArrayList<>();

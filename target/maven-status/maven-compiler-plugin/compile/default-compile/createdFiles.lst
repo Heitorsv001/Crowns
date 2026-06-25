@@ -1,5 +1,6 @@
 model/Inimigo.class
 model/TipoCarta.class
+com/mycompany/crowns/dao/ConexaoDB.class
 controller/GameplayController.class
 utils/EstadoJogo.class
 com/mycompany/crowns/dao/HistoricoDAO.class
@@ -15,15 +16,14 @@ controller/HistoricoController.class
 model/Carta.class
 controller/LojaController.class
 utils/RandomUtils.class
-model/Deck.class
 model/Jogador.class
+model/Deck.class
 com/mycompany/crowns/dao/CartaDAO.class
 module-info.class
-com/mycompany/crowns/dao/JogardorDAO.class
+com/mycompany/crowns/dao/JogadorDAO.class
 model/Arena.class
-controller/CreditosController.class
 model/Recompensa.class
+controller/CreditosController.class
 utils/CalcularDano.class
-controller/PrymaryController.class
 model/FabricaCartas.class
 utils/GerenciadorCena.class

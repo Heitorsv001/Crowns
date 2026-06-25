@@ -1,11 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
-</AnchorPane>
+<StackPane xmlns="http://javafx.com/javafx/11"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controller.DeckController">
+
+    <!-- Fundo -->
+    <ImageView fitWidth="900" fitHeight="650" preserveRatio="false">
+        <image><Image url="@images/mesa.png" /></image>
+    </ImageView>
+    <Pane style="-fx-background-color: rgba(10,10,20,0.65);" />
+
+    <VBox spacing="16">
+        <padding><Insets top="20" bottom="20" left="24" right="24"/></padding>
+
+        <!-- Cabecalho -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="Gerenciar Deck"
+                   style="-fx-text-fill: #e2b96f; -fx-font-size: 22px; -fx-font-weight: bold;"/>
+            <Label text="Selecione uma carta do deck e outra da colecao para trocar"
+                   style="-fx-text-fill: #aaaaaa; -fx-font-size: 13px;"/>
+        </HBox>
+
+        <!-- Deck atual -->
+        <VBox spacing="8" style="-fx-background-color: rgba(26,42,26,0.80);
+                                  -fx-background-radius: 8; -fx-padding: 12;">
+            <Label text="Deck Atual (4 cartas)"
+                   style="-fx-text-fill: #88ff88; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <HBox fx:id="painelDeck" spacing="12" alignment="CENTER_LEFT"/>
+        </VBox>
+
+        <!-- Colecao -->
+        <VBox spacing="8" style="-fx-background-color: rgba(42,26,26,0.80);
+                                  -fx-background-radius: 8; -fx-padding: 12;">
+            <Label text="Sua Colecao"
+                   style="-fx-text-fill: #ffaa44; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <ScrollPane fitToWidth="true" prefHeight="180"
+                        style="-fx-background: transparent; -fx-background-color: transparent;">
+                <HBox fx:id="painelColecao" spacing="12" alignment="CENTER_LEFT">
+                    <padding><Insets top="4" bottom="4" left="4" right="4"/></padding>
+                </HBox>
+            </ScrollPane>
+        </VBox>
+
+        <!-- Status da troca e botoes -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label fx:id="lblStatus"
+                   style="-fx-text-fill: #cccccc; -fx-font-size: 13px;"
+                   text="Selecione uma carta do deck para substituir."/>
+            <Button text="Voltar para Batalha"
+                    onAction="#aoVoltar"
+                    prefWidth="180" prefHeight="38"
+                    style="-fx-background-color: #3a3a5a; -fx-text-fill: white;
+                           -fx-font-size: 13px; -fx-background-radius: 8; -fx-cursor: hand;"/>
+        </HBox>
+    </VBox>
+</StackPane>

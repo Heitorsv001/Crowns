@@ -1,5 +1,3 @@
--- Nome Do Banco de Dados: Crowns
-
 CREATE TABLE cartas (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nome VARCHAR(50) NOT NULL UNIQUE,
@@ -40,7 +38,6 @@ VALUES
     ('Lava Hound',      'TANQUE',     700,  40, 4, 'lava-hound.png',       0.00, 0.00, 0.00),
     ('Mega Cavaleiro',  'ESPECIAL',   800, 280, 4, 'mega-cavaleiro.png',   0.30, 0.00, 0.00);
 
-
 CREATE TABLE jogadores (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     nome VARCHAR(80) NOT NULL UNIQUE,
@@ -70,7 +67,6 @@ CREATE TABLE jogador_cartas (
         UNIQUE (jogador_id, carta_id)
 );
 
-
 CREATE TABLE deck_jogador (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     jogador_id INTEGER NOT NULL,
@@ -90,7 +86,6 @@ CREATE TABLE deck_jogador (
         UNIQUE (jogador_id, posicao)
 );
 
-
 CREATE TABLE historico_runs (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     jogador_id INTEGER NOT NULL,
@@ -107,8 +102,6 @@ CREATE TABLE historico_runs (
         ON DELETE CASCADE
 );
 
-
-
 CREATE INDEX idx_jogador_cartas_jogador
     ON jogador_cartas(jogador_id);
 
@@ -121,9 +114,9 @@ CREATE INDEX idx_historico_jogador
 CREATE INDEX idx_historico_data
     ON historico_runs(data_run DESC);
 
-RANKING
+DROP VIEW IF EXISTS ranking;
 
-CREATE OR REPLACE VIEW ranking AS
+CREATE VIEW ranking AS
 SELECT
     ROW_NUMBER() OVER (
         ORDER BY total_vitorias DESC,

@@ -1,5 +1,4 @@
 package model;
-
 import java.util.ArrayList;
 import java.util.List;
 public class Jogador {
@@ -115,8 +114,6 @@ public class Jogador {
     public void substituirCartaNoDeck(int posicao, Carta novaCarta) {
         deck.substituirCarta(posicao, novaCarta);
     }
-
-  
     public String getNome()              { return nome; }
     public Deck getDeck()                { return deck; }
     public List<Carta> getColecao()      { return colecao; }
@@ -138,7 +135,7 @@ public class Jogador {
     public void setTotalDerrotas(int d)  { this.totalDerrotas = d; }
     public void setDeck(Deck deck)       { this.deck = deck; }
     public void setColecao(List<Carta> c){ this.colecao = c; }
-
+    
     @Override
     public String toString() {
         return String.format("Jogador{nome='%s', hp=%d/%d, elixir=%d, moedas=%d, arena=%d}",

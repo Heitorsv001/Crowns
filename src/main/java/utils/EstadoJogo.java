@@ -1,5 +1,5 @@
 package utils;
-
+import com.mycompany.crowns.dao.JogadorDAO;
 import model.Arena;
 import model.Jogador;
 import model.Recompensa;
@@ -21,14 +21,32 @@ public class EstadoJogo {
     }
 
     public void iniciarSessao(String nomeJogador) {
+    // Tenta carregar jogador existente do banco
+    Jogador jogadorExistente = JogadorDAO.carregar(nomeJogador);
+
+    if (jogadorExistente != null) {
+        // Jogador ja existe — restaura estado salvo
+        this.jogador = jogadorExistente;
+        this.jogador.iniciarRun(); // reseta HP e elixir, mantem upgrades e deck
+    } else {
+        // Jogador novo — cria do zero e salva no banco
         this.jogador = new Jogador(nomeJogador);
-        this.arenas  = new ArrayList<>();
-        arenas.add(Arena.criarArena1()); 
-        arenas.add(Arena.criarArena2());
-        arenas.add(Arena.criarArena3()); 
-        this.ultimaRecompensa = null;
+        JogadorDAO.salvarOuAtualizar(this.jogador);
+        JogadorDAO.salvarCartaNaColecao(nomeJogador, this.jogador.getColecao());
     }
 
+    this.arenas = new ArrayList<>();
+    arenas.add(Arena.criarArena1());
+    arenas.add(Arena.criarArena2());
+    arenas.add(Arena.criarArena3());
+
+    // Desbloqueia arenas ja conquistadas
+    for (int i = 0; i < this.jogador.getArenaAtual() && i < arenas.size(); i++) {
+        arenas.get(i).desbloquear();
+    }
+
+    this.ultimaRecompensa = null;
+}
     public Arena getArenaAtual() {
         int idx = jogador.getArenaAtual();
         if (idx >= arenas.size()) return null; 

@@ -70,7 +70,7 @@ public class FabricaCartas {
     }
 
     public static Carta criarMegaCavaleiro() {
-        Carta c = new Carta("Mega Cavaleiro", TipoCarta.ESPECIAL, 800, 280, "mega-cavaleiro.png");
+        Carta c = new Carta("Mega Cavaleiro", TipoCarta.ESPECIAL, 500, 200, "mega-cavaleiro.png");
         c.setChanceCritico(0.30);
         return c;
     }
