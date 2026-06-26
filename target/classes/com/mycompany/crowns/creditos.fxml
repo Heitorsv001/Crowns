@@ -21,17 +21,12 @@
             <Insets top="15" bottom="15" left="80" right="80"/>
         </padding>
 
-        <!-- Título -->
-        <Label text="⚔  CROWNS"
+        <Label text="  CROWNS"
                style="-fx-font-size: 38px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
-
-        <Label text="Jogo de Cartas Estratégico"
-               style="-fx-font-size: 14px; -fx-text-fill: #aaaaaa; -fx-font-style: italic;"/>
 
         <Label text="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                style="-fx-text-fill: #444444;"/>
 
-        <!-- Desenvolvedores -->
         <Label text="👥  Desenvolvedores"
                style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
 
@@ -44,8 +39,7 @@
         <Label text="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                style="-fx-text-fill: #444444;"/>
 
-        <!-- Disciplina -->
-        <Label text="🎓  Disciplina"
+        <Label text="  Disciplina"
                style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
 
         <Label fx:id="labelDisciplina"
@@ -54,8 +48,7 @@
         <Label text="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                style="-fx-text-fill: #444444;"/>
 
-        <!-- Referências -->
-        <Label text="🎮  Referências"
+        <Label text="  Referências"
                style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
 
         <Label fx:id="labelRef1"
@@ -67,8 +60,7 @@
         <Label text="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                style="-fx-text-fill: #444444;"/>
 
-        <!-- Tecnologias -->
-        <Label text="🛠  Tecnologias Utilizadas"
+        <Label text="  Tecnologias Utilizadas"
                style="-fx-font-size: 17px; -fx-font-weight: bold; -fx-text-fill: #e2b96f;"/>
 
         <Label fx:id="labelTec1"
@@ -83,11 +75,8 @@
         <Label text="━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                style="-fx-text-fill: #444444;"/>
 
-        <!-- Versão -->
-        <Label fx:id="labelVersao"
-               style="-fx-font-size: 11px; -fx-text-fill: #666666;"/>
+        
 
-        <!-- Botão Voltar -->
         <Button text="← Voltar ao Menu"
                 onAction="#aoVoltar"
                 style="-fx-background-color: #e2b96f;

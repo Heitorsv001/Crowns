@@ -17,7 +17,6 @@
     <VBox spacing="16">
         <padding><Insets top="20" bottom="20" left="24" right="24"/></padding>
 
-        <!-- Cabecalho -->
         <HBox alignment="CENTER_LEFT" spacing="20">
             <Label text="Gerenciar Deck"
                    style="-fx-text-fill: #e2b96f; -fx-font-size: 22px; -fx-font-weight: bold;"/>
@@ -25,7 +24,6 @@
                    style="-fx-text-fill: #aaaaaa; -fx-font-size: 13px;"/>
         </HBox>
 
-        <!-- Deck atual -->
         <VBox spacing="8" style="-fx-background-color: rgba(26,42,26,0.80);
                                   -fx-background-radius: 8; -fx-padding: 12;">
             <Label text="Deck Atual (4 cartas)"
@@ -33,7 +31,6 @@
             <HBox fx:id="painelDeck" spacing="12" alignment="CENTER_LEFT"/>
         </VBox>
 
-        <!-- Colecao -->
         <VBox spacing="8" style="-fx-background-color: rgba(42,26,26,0.80);
                                   -fx-background-radius: 8; -fx-padding: 12;">
             <Label text="Sua Colecao"
@@ -46,7 +43,6 @@
             </ScrollPane>
         </VBox>
 
-        <!-- Status da troca e botoes -->
         <HBox alignment="CENTER_LEFT" spacing="20">
             <Label fx:id="lblStatus"
                    style="-fx-text-fill: #cccccc; -fx-font-size: 13px;"

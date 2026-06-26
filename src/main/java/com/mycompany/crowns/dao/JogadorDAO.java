@@ -10,9 +10,6 @@ import model.Deck;
 
 public class JogadorDAO {
 
-    // =========================================================
-    // Salvar ou atualizar jogador
-    // =========================================================
 
     public static void salvarOuAtualizar(Jogador jogador) {
         String sql = """
@@ -40,9 +37,6 @@ public class JogadorDAO {
         }
     }
 
-    // =========================================================
-    // Buscar ID do jogador pelo nome
-    // =========================================================
 
     public static int buscarId(String nomeJogador) {
         String sql = "SELECT id FROM jogadores WHERE nome = ?";
@@ -59,9 +53,6 @@ public class JogadorDAO {
         return -1;
     }
 
-    // =========================================================
-    // Colecao — salvar carta comprada
-    // =========================================================
 
     public static void salvarCartaNaColecao(String nomeJogador, Carta carta) {
         int jogadorId = buscarId(nomeJogador);
@@ -94,10 +85,7 @@ public static void salvarCartaNaColecao(String nomeJogador, List<Carta> cartas) 
     }
 }
 
-    // =========================================================
-    // Colecao — atualizar nivel apos upgrade
-    // =========================================================
-
+ 
     public static void atualizarNivelCarta(String nomeJogador, Carta carta) {
         int jogadorId = buscarId(nomeJogador);
         int cartaId   = CartaDAO.buscarId(carta.getNome());
@@ -118,25 +106,18 @@ public static void salvarCartaNaColecao(String nomeJogador, List<Carta> cartas) 
         }
     }
 
-    // =========================================================
-    // Deck — salvar deck ativo
-    // =========================================================
-
     public static void salvarDeck(Jogador jogador) {
         int jogadorId = buscarId(jogador.getNome());
         if (jogadorId == -1) return;
 
-        // Apaga deck anterior e insere o atual
         String deletar = "DELETE FROM deck_jogador WHERE jogador_id = ?";
         String inserir = "INSERT INTO deck_jogador (jogador_id, carta_id, posicao) VALUES (?, ?, ?)";
 
         try (Connection con = ConexaoDB.conectar()) {
-            // Deletar
             PreparedStatement psDel = con.prepareStatement(deletar);
             psDel.setInt(1, jogadorId);
             psDel.executeUpdate();
 
-            // Inserir cartas do deck atual
             PreparedStatement psIns = con.prepareStatement(inserir);
             List<Carta> cartas = jogador.getDeck().getCartas();
             for (int i = 0; i < cartas.size(); i++) {
@@ -154,9 +135,6 @@ public static void salvarCartaNaColecao(String nomeJogador, List<Carta> cartas) 
         }
     }
 
-    // =========================================================
-    // Historico — registrar resultado de uma run
-    // =========================================================
 
     public static void registrarRun(String nomeJogador, int arenasVencidas,
                                      String resultado, int moedasGanhas, String cartaBonus) {
@@ -202,10 +180,8 @@ public static void salvarCartaNaColecao(String nomeJogador, List<Carta> cartas) 
 
         int jogadorId = rs.getInt("id");
 
-        // Carrega colecao com niveis de upgrade
         carregarColecao(jogador, jogadorId);
 
-        // Carrega deck salvo
         carregarDeck(jogador, jogadorId);
 
         return jogador;

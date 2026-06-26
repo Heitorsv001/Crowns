@@ -5,7 +5,6 @@ import com.mycompany.crowns.dao.ConexaoDB;
 
 public class CartaDAO {
 
-    // Busca o ID de uma carta pelo nome (usado pelos outros DAOs)
     public static int buscarId(String nomeCarta) {
         String sql = "SELECT id FROM cartas WHERE nome = ?";
         try (Connection con = ConexaoDB.conectar();

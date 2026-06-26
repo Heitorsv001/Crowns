@@ -11,7 +11,7 @@ public class CalcularDano {
         int danoBase = atacante.getDano();
         double chance = atacante.getChanceCritico();
         if (chance > 0 && random.nextDouble() < chance) {
-            return danoBase * 2; // crítico
+            return danoBase * 2; 
         }
         return danoBase;
     }

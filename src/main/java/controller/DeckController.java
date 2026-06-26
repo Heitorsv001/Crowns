@@ -35,9 +35,6 @@ public class DeckController implements Initializable {
         renderizarColecao();
     }
 
-    // =========================================================
-    // Logica de selecao e troca
-    // =========================================================
 
     private void selecionarCartaDoDeck(Carta carta) {
         cartaSelecionadaDoDeck = carta;
@@ -63,11 +60,9 @@ public class DeckController implements Initializable {
             return;
         }
 
-        // Faz a troca
         int posicao = jogador.getDeck().getCartas().indexOf(cartaSelecionadaDoDeck);
         jogador.substituirCartaNoDeck(posicao, cartaDaColecao);
 
-        // Carta nova entra em recarga imediatamente (regra definida)
         cartaDaColecao.iniciarRecarga();
 
         lblStatus.setText("Trocado: " + cartaSelecionadaDoDeck.getNome()
@@ -81,9 +76,6 @@ public class DeckController implements Initializable {
         renderizarColecao();
     }
 
-    // =========================================================
-    // Renderizacao
-    // =========================================================
 
     private void renderizarDeck() {
         painelDeck.getChildren().clear();
@@ -187,9 +179,6 @@ public class DeckController implements Initializable {
         return btn;
     }
 
-    // =========================================================
-    // Navegacao
-    // =========================================================
 
     @FXML
     private void aoVoltar() {

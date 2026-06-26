@@ -43,7 +43,6 @@ public class LojaController implements Initializable {
         lblMoedas.setText("💰 Suas moedas: " + jogador.getMoedas());
     }
 
-    // ===================== MELHORAR (UPGRADE) =====================
 
     private void renderizarCartasParaUpgrade() {
         painelUpgrade.getChildren().clear();
@@ -105,7 +104,6 @@ public class LojaController implements Initializable {
     atualizarMoedas();
     renderizarCartasParaUpgrade();
 }
-    // ===================== COMPRAR NOVAS CARTAS =====================
 
     private void renderizarCartasParaComprar() {
         painelComprar.getChildren().clear();
@@ -169,7 +167,6 @@ public class LojaController implements Initializable {
     renderizarCartasParaUpgrade();
     renderizarCartasParaComprar();
 }
-    /** Catálogo de cartas que ainda não estão na coleção do jogador. */
     private List<Carta> catalogoDeCompra() {
         List<Carta> catalogoCompleto = new ArrayList<>();
         catalogoCompleto.add(FabricaCartas.criarMago());
@@ -181,7 +178,6 @@ public class LojaController implements Initializable {
         catalogoCompleto.add(FabricaCartas.criarPEKA());
         catalogoCompleto.add(FabricaCartas.criarGolem());
         catalogoCompleto.add(FabricaCartas.criarLavaHound());
-        catalogoCompleto.add(FabricaCartas.criarMegaCavaleiro());
 
         List<Carta> disponiveis = new ArrayList<>();
         for (Carta candidata : catalogoCompleto) {
@@ -192,7 +188,6 @@ public class LojaController implements Initializable {
         return disponiveis;
     }
 
-    // ===================== AUXILIARES DE UI =====================
 
     private VBox criarTileBase(String corFundo) {
         VBox tile = new VBox(6);

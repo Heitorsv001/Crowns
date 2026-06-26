@@ -19,7 +19,6 @@ public class Carta {
     private long tempoUso;        
     private static final long TEMPO_RECARGA_MS = 3000; 
 
-    // --- Habilidade especial ---
     private double chanceCritico;  
     private double chanceCura;      
     private double percentualCura;  

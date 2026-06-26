@@ -21,15 +21,14 @@ public class EstadoJogo {
     }
 
     public void iniciarSessao(String nomeJogador) {
-    // Tenta carregar jogador existente do banco
+  
     Jogador jogadorExistente = JogadorDAO.carregar(nomeJogador);
 
     if (jogadorExistente != null) {
-        // Jogador ja existe — restaura estado salvo
+      
         this.jogador = jogadorExistente;
-        this.jogador.iniciarRun(); // reseta HP e elixir, mantem upgrades e deck
+        this.jogador.iniciarRun(); 
     } else {
-        // Jogador novo — cria do zero e salva no banco
         this.jogador = new Jogador(nomeJogador);
         JogadorDAO.salvarOuAtualizar(this.jogador);
         JogadorDAO.salvarCartaNaColecao(nomeJogador, this.jogador.getColecao());

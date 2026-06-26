@@ -37,7 +37,7 @@ public class FabricaCartas {
     }
 
     public static Carta criarDragao() {
-        Carta c = new Carta("Dragão", TipoCarta.DISTANCIA, 320, 180, "dragao.png");
+        Carta c = new Carta("Dragão", TipoCarta.DISTANCIA, 320, 250, "dragao.png");
         return c;
     }
 
@@ -48,30 +48,30 @@ public class FabricaCartas {
     }
 
     public static Carta criarCurandeira() {
-        Carta c = new Carta("Curandeira", TipoCarta.SUPORTE, 280, 90, "curandeira.png");
-        c.setChanceCura(0.20);
-        c.setPercentualCura(0.40);
+        Carta c = new Carta("Curandeira", TipoCarta.SUPORTE, 280, 100, "curandeira.png");
+        c.setChanceCura(0.50);
+        c.setPercentualCura(0.50);
         return c;
     }
 
     public static Carta criarPEKA() {
-        Carta c = new Carta("PEKA", TipoCarta.DESTRUIDOR, 650, 320, "pekka.png");
+        Carta c = new Carta("PEKA", TipoCarta.DESTRUIDOR, 650, 499, "pekka.png");
         return c;
     }
 
     public static Carta criarGolem() {
-        Carta c = new Carta("Golem", TipoCarta.TANQUE, 900, 120, "golem.png");
+        Carta c = new Carta("Golem", TipoCarta.TANQUE, 900, 200, "golem.png");
         return c;
     }
 
     public static Carta criarLavaHound() {
-        Carta c = new Carta("Lava Hound", TipoCarta.TANQUE, 700, 40, "lava-hound.png");
+        Carta c = new Carta("Lava Hound", TipoCarta.TANQUE, 700, 250, "lava-hound.png");
         return c;
     }
 
     public static Carta criarMegaCavaleiro() {
-        Carta c = new Carta("Mega Cavaleiro", TipoCarta.ESPECIAL, 500, 200, "mega-cavaleiro.png");
-        c.setChanceCritico(0.30);
+        Carta c = new Carta("Mega Cavaleiro", TipoCarta.ESPECIAL, 1000, 500, "mega-cavaleiro.png");
+        c.setChanceCritico(0.15);
         return c;
     }
 }

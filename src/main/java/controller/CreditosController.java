@@ -6,26 +6,19 @@ import utils.GerenciadorCena;
 
 public class CreditosController {
 
-    // Alunos
     @FXML private Label labelAluno1;
     @FXML private Label labelAluno2;
 
-    // Disciplina
     @FXML private Label labelDisciplina;
 
-    // Referências de jogos
     @FXML private Label labelRef1;
     @FXML private Label labelRef2;
 
-    // Tecnologias
     @FXML private Label labelTec1;
     @FXML private Label labelTec2;
     @FXML private Label labelTec3;
 
-    // Versão
-    @FXML private Label labelVersao;
 
-    // ─── Inicialização ───────────────────────────────────────────────────────
 
     @FXML
     public void initialize() {
@@ -42,10 +35,8 @@ public class CreditosController {
         labelTec2.setText("JavaFX 11");
         labelTec3.setText("Maven");
 
-        labelVersao.setText("v1.0");
     }
 
-    // ─── Navegação ───────────────────────────────────────────────────────────
 
     @FXML
     private void aoVoltar() {
